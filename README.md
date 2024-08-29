@@ -2,4 +2,4 @@
 ## Raw Code
 will be writing the raw code in C most probably
 ## Try Out
-will be attaching a executable file 
+will be attaching an executable file 
