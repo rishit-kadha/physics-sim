@@ -4,6 +4,5 @@
 // implement linear motion
 // impliment 2d motion
 int main(){
-    return 1;
-
+    return 1 ;
 }

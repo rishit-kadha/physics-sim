@@ -1,0 +1,50 @@
+.header{
+    background-color:	#050003;
+    margin-top: 0;
+    margin-left: 0;
+    height: 60px;
+    display:flex;
+    justify-content: space-around;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+}
+h1{
+    height: 20px;
+    color: #e9e7e7;
+    font-family:monospace;
+}
+h1:hover{
+    color:#07a343
+}
+#interface_text:hover{
+    color: #252525;
+}
+#canvas{
+    background-color: #e9e7e7;
+    align-self: center;
+    border-radius: 20px;
+}
+body{
+    background-color: #0d0d0d
+}
+#canvas_parent{
+    padding-top: 60px;
+    padding-bottom: 60px;
+    margin-left: 0;
+}
+#cancon{
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #07a343;
+}
+#interface{
+    background-color:#07a343;
+    border-radius: 20px;
+    min-width: 500px;
+    padding: 20px;
+    border-width: 20px;
+    border-color: aliceblue;
+}
