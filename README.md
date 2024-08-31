@@ -1,5 +1,5 @@
 # physics-sim
 ## Raw Code
-will be writing the raw code in C most probably
+html css JavaScript
 ## Try Out
-will be attaching an executable file 
+Open index.html locally after downloading all the raw files.
