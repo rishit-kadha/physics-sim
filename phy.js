@@ -7,11 +7,8 @@ const hoverColor="#FF69B4";
 //change Color on 
 
 ///DEFINATIONS
+let objects =[];
 
-
-// Functions
-
-//canvas animation on run
 const runbutton = document.getElementById("run");
 const pausebutton = document.getElementById("pause");
 const restartbutton = document.getElementById("restart");
@@ -20,64 +17,10 @@ const  clearbutton = document.getElementById("clear")
 let startTime =performance.now() ;
 let previousTime = startTime;
 
-let flag =false;
+let flag =true;
 let animationID ;
 
 // objects is the list of objects in the canvas
-function animate(objects){
-    //time 
-    const currentTime = performance.now();
-    const deltaTime = (currentTime-previousTime)/1000 //converting to seconds
-    previousTime=currentTime;
-
-    //update the State of the object
-    for(let object in objects){
-        object.updateState(deltaTime);
-    }
-    //Clear The screen
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    
-    //Redraw current frame
-    for(let object in objects){
-        object.Redraw();
-    }
-
-    // Animation boolean logic
-    if(flag){
-        animationID=window.requestAnimationFrame(animate);
-    }
-    else
-    {
-        window.cancelAnimationFrame(animationID);
-    }
-
-}
-// buttonrunner
-function buttonrunner(objects){
-    runbutton.addEventListener("click",() => {
-        flag =true ;
-        animate(objects);
-    });
-    pausebutton.addEventListener("click",() =>{
-        if(flag==true){
-            flag = false ; //Pausing
-        }else{
-            flag = true ; //Resuming
-        }
-
-    })
-    clearbutton.addEventListener("click",()=>{
-        flag = false ;
-        ctx.clearRect(0,0,canvas.width,canvas.height);
-        
-    })
-    restartbutton.addEventListener("click",() => {
-
-    })
-}
-
-
-
 /// CLASSES OF OBJECTS
 class Rectangles {
     constructor(x,y,mass,height,width,velocity,angle){
@@ -98,23 +41,93 @@ class Rectangles {
         this.x=this.x +this.vel_x*deltaTime ;// new x
         this.y=this.y +this.vel_y*deltaTime ;// new y
     }
-    Redraw(){
-        ctx.fillStyle= "red";
-        ctx.Rect(this.x,this.y,this.width,this.height);
-    }
-    static giveListOfObjects() {
-        
-        
+    Redraw() {
+        ctx.fillStyle = "red";
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.strokeStyle = "black";  // O
+        ctx.strokeRect(this.x, this.y, this.width, this.height);
     }
 
 }
 
+// Functions
+function animate(){
+
+    //time 
+    const currentTime = performance.now();
+    const deltaTime = (currentTime-previousTime)/1000 //converting to seconds
+    previousTime=currentTime;
+
+    //update the State of the object
+    for(let i=0 ; i< objects.length ;i++){
+        objects[i].updateState(deltaTime);
+    }
+    //Clear The screen
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    
+    //Redraw current frame
+    for(let i=0 ; i< objects.length ;i++){
+        objects[i].Redraw();
+    }
+
+    //Request Next Frame 
+    animationID = requestAnimationFrame(animate);
+
+
+ 
+
+}
+// buttonrunner
+function buttonrunner(){
+    runbutton.addEventListener("click",() => {
+        if(!flag){
+            flag =true ;
+            animate();
+
+        }
+
+    });
+    pausebutton.addEventListener("click",() =>{
+        if(flag==true){
+            flag = false ; //Pausing
+            cancelAnimationFrame(animationID);
+        }else{
+            flag = true ; //Resuming
+            animate();
+        }
+
+    })
+    clearbutton.addEventListener("click",()=>{
+        flag = false ;
+        cancelAnimationFrame(animationID);
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        
+    })
+    restartbutton.addEventListener("click",() => {
+        flag = false;
+        cancelAnimationFrame(animationID); // Stop the current animation
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+        previousTime = performance.now(); // Reset the time
+        objects = []; // Clear all objects
+
+        // Reinitialize or create new objects if necessary
+        objects.push(new Rectangles(100, 100, 1, 100, 100, 20, 0));
+        flag = true;
+        animate(); // Restart animation loop
+
+    })
+}
+
+
+
+
+
 
 /// RUNNING CODE
-let objects=[];
-let rect1 = new Rectangles(100,100,1,100,100,2,0);
-buttonrunner(objects);
-rect1.Redraw();
-objects.push(rect1);
 
-animate(objects);
+objects.push(new Rectangles(100, 100, 1, 100, 100, 20, 0));
+
+buttonrunner();
+animate();
+
+
