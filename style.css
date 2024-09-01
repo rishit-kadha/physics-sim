@@ -15,6 +15,7 @@ h1{
     height: 20px;
     color: #e9e7e7;
     font-family:monospace;
+    text-align: center;
 }
 h1:hover{
     color:#07a343
@@ -46,5 +47,39 @@ body{
     min-width: 500px;
     padding: 20px;
     border-width: 20px;
-    border-color: aliceblue;
+    text-align: center;
+    display: flex;
+    justify-content:space-around;
+}
+.Canvas_control{
+    display: flex;
+    flex-direction: column;
+}
+#controlpanel{
+    display: flex;
+    justify-content: space-around;
+    background-color: #07a343;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 20px;
+
+}
+.button{
+    background-color: #04b94a;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    font-family: monospace;
+    font-size: 30px;
+}
+.button:hover{
+    cursor: pointer;
+    color: #e9e7e7;
+    font-family:monospace;
+    text-align: center;
+    background-color: #0d0d0d;
+
+
 }
