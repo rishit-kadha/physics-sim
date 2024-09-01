@@ -93,7 +93,8 @@ function buttonrunner(){
             cancelAnimationFrame(animationID);
         }else{
             flag = true ; //Resuming
-            animate();
+            previousTime = performance.now(); // Reset previousTime to avoid time jump
+            animate(previousTime); 
         }
 
     })
