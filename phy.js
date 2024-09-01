@@ -50,7 +50,9 @@ class Rectangles {
 
 }
 
-// Functions
+///FUNCTIONS
+
+//Animate
 function animate(){
 
     //time 
@@ -73,6 +75,7 @@ function animate(){
     //Request Next Frame 
     animationID = requestAnimationFrame(animate);
 }
+
 // buttonrunner
 function buttonrunner(){
     runbutton.addEventListener("click",() => {
@@ -116,10 +119,6 @@ function buttonrunner(){
 
     })
 }
-
-
-
-
 
 
 /// RUNNING CODE
