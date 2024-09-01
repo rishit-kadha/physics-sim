@@ -17,7 +17,7 @@ const  clearbutton = document.getElementById("clear")
 let startTime =performance.now() ;
 let previousTime = startTime;
 
-let flag =true;
+let flag =false;
 let animationID ;
 
 // objects is the list of objects in the canvas
@@ -72,18 +72,14 @@ function animate(){
 
     //Request Next Frame 
     animationID = requestAnimationFrame(animate);
-
-
- 
-
 }
 // buttonrunner
 function buttonrunner(){
     runbutton.addEventListener("click",() => {
         if(!flag){
             flag =true ;
-            animate();
-
+            previousTime = performance.now(); // Reset previousTime to avoid time jump
+            animate(previousTime); 
         }
 
     });
@@ -102,6 +98,8 @@ function buttonrunner(){
         flag = false ;
         cancelAnimationFrame(animationID);
         ctx.clearRect(0,0,canvas.width,canvas.height);
+        previousTime = performance.now(); // Reset the time
+        objects = []; // Clear all objects
         
     })
     restartbutton.addEventListener("click",() => {
