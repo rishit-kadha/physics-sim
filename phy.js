@@ -2,21 +2,26 @@
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-const hoverColor="#FF69B4";
-
-//change Color on 
 
 ///DEFINATIONS
 let objects =[];
-
+//control buttons
 const runbutton = document.getElementById("run");
 const pausebutton = document.getElementById("pause");
 const restartbutton = document.getElementById("restart");
-const  clearbutton = document.getElementById("clear")
+const  clearbutton = document.getElementById("clear");
+//interface buttons
+const onedMotionbutton = document.getElementById("d1m");
+const projectileMotionbutton = document.getElementById("pm");
+const SHMbutton = document.getElementById("shm");
+const Gravitationbutton = document.getElementById("gravitation");
+const Collisionbutton = document.getElementById("collision");
 
+//time control definitions
 let startTime =performance.now() ;
 let previousTime = startTime;
 
+let displayButtons = true;
 let flag =false;
 let animationID ;
 
@@ -87,7 +92,7 @@ function buttonrunner(){
 
     });
     pausebutton.addEventListener("click",() =>{
-        if(flag==true){
+        if(flag){
             flag = false ; //Pausing
             cancelAnimationFrame(animationID);
         }else{
@@ -113,19 +118,19 @@ function buttonrunner(){
         objects = []; // Clear all objects
 
         // Reinitialize or create new objects if necessary
-        objects.push(new Rectangles(100, 100, 1, 100, 100, 20, 0));
+        objects.push(new Rectangles(100, 100, 1, 100, 100, 20, (Math.PI)/6));
         flag = true;
         animate(); // Restart animation loop
 
     })
+
 }
 
+//function to hide interface elements when a interface button is clicked 
 
 /// RUNNING CODE
 
-objects.push(new Rectangles(100, 100, 1, 100, 100, 20, 0));
+objects.push(new Rectangles(100, 100, 1, 100, 100, 20, (Math.PI)/6));
 
 buttonrunner();
-animate();
-
 
